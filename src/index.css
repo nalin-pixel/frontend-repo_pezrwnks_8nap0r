@@ -12,13 +12,35 @@
     --font-manrope: 'Manrope', system-ui, sans-serif;
   }
 
+  /* Improve global readability */
   html {
-    font-family: var(--font-sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    /* Prefer Manrope for legibility, fall back to Inter */
+    font-family: var(--font-manrope), var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: 16px; /* comfortable base for mobile */
+    line-height: 1.65; /* relaxed line height for paragraphs */
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 17px; /* slight bump on larger screens for legibility */
+    }
   }
 
   body {
-    @apply antialiased;
+    @apply text-slate-800 bg-white antialiased;
+  }
+
+  /* Typography defaults */
+  p { @apply leading-relaxed; }
+  li { @apply leading-relaxed; }
+  small { @apply text-slate-600; }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-900 tracking-tight;
   }
 }
 
